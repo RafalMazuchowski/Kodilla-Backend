@@ -3,12 +3,12 @@ package com.kodilla.backend.domain;
 import lombok.*;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import javax.persistence.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode
 @Entity(name = "BORROWER")
 public class Borrower {
@@ -25,4 +25,11 @@ public class Borrower {
 
     @Column(name = "REGISTRATION")
     private Date registration;
+
+    public Borrower(Long borrowerId, String firstName, String lastName, Date registration) {
+        this.borrowerId = borrowerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.registration = Date.valueOf(LocalDate.now());
+    }
 }

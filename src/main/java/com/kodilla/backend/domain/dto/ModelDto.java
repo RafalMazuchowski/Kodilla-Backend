@@ -11,7 +11,7 @@ import java.sql.Date;
 @AllArgsConstructor
 public class ModelDto {
     private Long modelId;
-    private Long manufacturerId;
+    private String manufacturer;
     private String carModel;
     private Double rate;
 }

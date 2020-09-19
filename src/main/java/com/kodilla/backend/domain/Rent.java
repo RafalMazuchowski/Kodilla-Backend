@@ -1,16 +1,14 @@
 package com.kodilla.backend.domain;
 
 import com.kodilla.backend.domain.enums.Rental;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "RENT")
 @EqualsAndHashCode
 public class Rent {
@@ -31,7 +29,7 @@ public class Rent {
     private Integer distance; //???????????????????????????????
 
     @Column(name = "ON_RENT_IN")
-    private String placeOfRent;
+    private Rental placeOfRent;
 
     @Column(name = "RETURNED_IN")
     private Rental placeOfReturn;
