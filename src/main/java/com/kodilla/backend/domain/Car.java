@@ -10,7 +10,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@Entity(name = "CAR")
+@Entity(name = "CARS")
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,8 +18,8 @@ public class Car {
     private Long carId;
 
     @ManyToOne
-    @JoinColumn(name = "MODEL")
-    private Model model;
+    @JoinColumn(name = "MODEL_ID")
+    private Model modelId;
 
     @Column(name = "IN_USE")
     private Boolean borrowed;

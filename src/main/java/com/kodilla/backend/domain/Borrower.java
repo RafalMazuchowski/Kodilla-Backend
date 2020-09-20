@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
-@Entity(name = "BORROWER")
+@Entity(name = "BORROWERS")
 public class Borrower {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

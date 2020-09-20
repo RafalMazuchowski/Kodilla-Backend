@@ -10,11 +10,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@Entity(name = "MODEL")
+@Entity(name = "MODELS")
 public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "RENT_ID", unique = true)
+    @Column(name = "MODEL_ID", unique = true)
     private Long modelId;
 
     @Column(name = "MANUFACTURER")

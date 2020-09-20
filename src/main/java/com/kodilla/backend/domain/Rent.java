@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "RENT")
+@Entity(name = "RENTS")
 @EqualsAndHashCode
 public class Rent {
     @Id
@@ -28,7 +28,7 @@ public class Rent {
     @Column(name = "DISTANCE")
     private Integer distance; //???????????????????????????????
 
-    @Column(name = "ON_RENT_IN")
+    @Column(name = "RENTED_IN")
     private Rental placeOfRent;
 
     @Column(name = "RETURNED_IN")

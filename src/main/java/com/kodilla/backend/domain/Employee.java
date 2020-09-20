@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@Entity(name = "EMPLOYEE")
+@Entity(name = "EMPLOYEES")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
