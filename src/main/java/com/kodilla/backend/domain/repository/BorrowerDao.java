@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface BorrowerDao extends CrudRepository<Borrower, Long> {
 
     @Override
-    Borrower save(Borrower book);
+    Borrower save(Borrower borrower);
 
     @Override
     List<Borrower> findAll();

@@ -11,14 +11,16 @@ import java.util.stream.Collectors;
 public class BorrowerMapper {
 
     public Borrower mapToBorrower(BorrowerDto borrowerDto) {
-        return new Borrower(borrowerDto.getBorrowerId(),
+        return new Borrower(
+                borrowerDto.getBorrowerId(),
                 borrowerDto.getFirstName(),
                 borrowerDto.getLastName(),
                 borrowerDto.getRegistration());
     }
 
     public BorrowerDto mapToBorrowerDto(Borrower borrower) {
-        return new BorrowerDto(borrower.getBorrowerId(),
+        return new BorrowerDto(
+                borrower.getBorrowerId(),
                 borrower.getFirstName(),
                 borrower.getLastName(),
                 borrower.getRegistration());
@@ -26,7 +28,8 @@ public class BorrowerMapper {
 
     public List<BorrowerDto> mapToBorrowerDtoList(List<Borrower> borrowerList) {
         return borrowerList.stream()
-                .map(b -> new BorrowerDto(b.getBorrowerId(),
+                .map(b -> new BorrowerDto(
+                        b.getBorrowerId(),
                         b.getFirstName(),
                         b.getLastName(),
                         b.getRegistration()))

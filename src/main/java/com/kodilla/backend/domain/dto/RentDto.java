@@ -1,6 +1,5 @@
 package com.kodilla.backend.domain.dto;
 
-import com.kodilla.backend.domain.enums.Rental;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

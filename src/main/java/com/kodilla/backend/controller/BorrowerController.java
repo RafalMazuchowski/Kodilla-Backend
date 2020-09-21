@@ -1,5 +1,6 @@
 package com.kodilla.backend.controller;
 
+import com.kodilla.backend.domain.Borrower;
 import com.kodilla.backend.domain.dto.BorrowerDto;
 import com.kodilla.backend.mapper.BorrowerMapper;
 import com.kodilla.backend.service.BorrowerService;
@@ -32,14 +33,13 @@ public class BorrowerController {
     }
 
     @PostMapping(value = "add", consumes = APPLICATION_JSON_VALUE)
-    public BorrowerDto createBorrower(@RequestBody BorrowerDto borrowerDto) {
-        return borrowerMapper.mapToBorrowerDto(borrowerService.saveBorrower(
-                borrowerMapper.mapToBorrower(borrowerDto)));
+    public Borrower createBorrower(@RequestBody BorrowerDto borrowerDto) {
+        return borrowerService.saveBorrower(borrowerMapper.mapToBorrower(borrowerDto));
     }
 
-    @PutMapping(value = "update/{id}", consumes = APPLICATION_JSON_VALUE)
-    public BorrowerDto updateBorrower(@RequestBody BorrowerDto borrowerDto, @RequestParam long id) {
-        return borrowerMapper.mapToBorrowerDto(borrowerService.updateBorrower(borrowerDto, id));
+    @PutMapping(value = "update", consumes = APPLICATION_JSON_VALUE)
+    public Borrower updateBorrower(@RequestBody BorrowerDto borrowerDto) {
+        return borrowerService.saveBorrower(borrowerMapper.mapToBorrower(borrowerDto));
     }
 
     @DeleteMapping(value = "delete/{id}")

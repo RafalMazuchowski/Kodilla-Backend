@@ -1,7 +1,6 @@
 package com.kodilla.backend.service;
 
 import com.kodilla.backend.domain.Borrower;
-import com.kodilla.backend.domain.dto.BorrowerDto;
 import com.kodilla.backend.domain.repository.BorrowerDao;
 import com.kodilla.backend.exceptions.BorrowerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +25,6 @@ public class BorrowerService {
     }
 
     public Borrower saveBorrower(Borrower borrower) {
-        return borrowerDao.save(borrower);
-    }
-
-    public Borrower updateBorrower(BorrowerDto borrowerDto, Long id) {
-        Borrower borrower = borrowerDao.findById(id).orElseThrow(BorrowerNotFoundException::new);
         return borrowerDao.save(borrower);
     }
 

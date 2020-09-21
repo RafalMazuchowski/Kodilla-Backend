@@ -1,9 +1,12 @@
 package com.kodilla.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
+
+import static com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING;
 
 @Getter
 @Setter
@@ -25,5 +28,6 @@ public class Car {
     private Boolean borrowed;
 
     @Column(name = "RENT_DATE")
+    @JsonFormat(shape = STRING, pattern = "yyyy-MM-dd")
     private Date rentDate;
 }
