@@ -1,7 +1,6 @@
 package com.kodilla.backend.service;
 
 import com.kodilla.backend.domain.Model;
-import com.kodilla.backend.domain.dto.ModelDto;
 import com.kodilla.backend.domain.repository.ModelDao;
 import com.kodilla.backend.exceptions.ModelNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +22,6 @@ public class ModelService {
 
     public Model getModel(Long id) {
         return modelDao.findById(id).orElseThrow(ModelNotFoundException::new);
-    }
-
-    public Model updateModel(ModelDto modelDto, Long id) {
-        Model model = modelDao.findById(id).orElseThrow(ModelNotFoundException::new);
-        return modelDao.save(model);
     }
 
     public Model saveModel(Model model) {

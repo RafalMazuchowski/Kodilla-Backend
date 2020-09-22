@@ -1,7 +1,6 @@
 package com.kodilla.backend.service;
 
 import com.kodilla.backend.domain.Rent;
-import com.kodilla.backend.domain.dto.RentDto;
 import com.kodilla.backend.domain.repository.RentDao;
 import com.kodilla.backend.exceptions.RentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +25,6 @@ public class RentService {
     }
 
     public Rent saveRent(Rent rent) {
-        return rentDao.save(rent);
-    }
-
-    public Rent updateRent(RentDto rentDto, Long id) {
-        Rent rent = rentDao.findById(id).orElseThrow(RentNotFoundException::new);
         return rentDao.save(rent);
     }
 

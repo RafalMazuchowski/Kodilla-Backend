@@ -12,20 +12,23 @@ import java.util.stream.Collectors;
 public class EmployeeMapper {
 
     public Employee mapToEmployee(EmployeeDto employeeDto) {
-        return new Employee(employeeDto.getEmployeeId(),
+        return new Employee(
+                employeeDto.getEmployeeId(),
                 employeeDto.getFullName(),
                 Degree.valueOf(employeeDto.getDegree()));
     }
 
     public EmployeeDto mapToEmployeeDto(Employee employee) {
-        return new EmployeeDto(employee.getEmployeeId(),
+        return new EmployeeDto(
+                employee.getEmployeeId(),
                 employee.getFullName(),
                 employee.getDegree().toString());
     }
 
     public List<EmployeeDto> mapToEmployeeDtoList(List<Employee> employeeList) {
         return employeeList.stream()
-                .map(e -> new EmployeeDto(e.getEmployeeId(),
+                .map(e -> new EmployeeDto(
+                        e.getEmployeeId(),
                         e.getFullName(),
                         e.getDegree().toString()))
                 .collect(Collectors.toList());

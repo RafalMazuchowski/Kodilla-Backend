@@ -33,13 +33,15 @@ public class BorrowerController {
     }
 
     @PostMapping(value = "add", consumes = APPLICATION_JSON_VALUE)
-    public Borrower createBorrower(@RequestBody BorrowerDto borrowerDto) {
-        return borrowerService.saveBorrower(borrowerMapper.mapToBorrower(borrowerDto));
+    public BorrowerDto createBorrower(@RequestBody BorrowerDto borrowerDto) {
+        return borrowerMapper.mapToBorrowerDto(
+                borrowerService.saveBorrower(borrowerMapper.mapToBorrower(borrowerDto)));
     }
 
     @PutMapping(value = "update", consumes = APPLICATION_JSON_VALUE)
-    public Borrower updateBorrower(@RequestBody BorrowerDto borrowerDto) {
-        return borrowerService.saveBorrower(borrowerMapper.mapToBorrower(borrowerDto));
+    public BorrowerDto updateBorrower(@RequestBody BorrowerDto borrowerDto) {
+        return borrowerMapper.mapToBorrowerDto(
+                borrowerService.saveBorrower(borrowerMapper.mapToBorrower(borrowerDto)));
     }
 
     @DeleteMapping(value = "delete/{id}")

@@ -4,6 +4,7 @@ import com.kodilla.backend.domain.enums.Rental;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -13,7 +14,8 @@ import javax.persistence.*;
 @EqualsAndHashCode
 public class Rent {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
+    @NotNull
     @Column(name = "RENT_ID", unique = true)
     private Long rentId;
 

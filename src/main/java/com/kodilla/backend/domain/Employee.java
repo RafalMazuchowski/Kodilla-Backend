@@ -3,7 +3,11 @@ package com.kodilla.backend.domain;
 import com.kodilla.backend.domain.enums.Degree;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -13,7 +17,8 @@ import javax.persistence.*;
 @Entity(name = "EMPLOYEES")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
+    @NotNull
     @Column(name = "RENT_ID", unique = true)
     private Long employeeId;
 

@@ -37,9 +37,9 @@ public class CarController {
                 carMapper.mapToCar(carDto)));
     }
 
-    @PutMapping(value = "update/{id}", consumes = APPLICATION_JSON_VALUE)
-    public CarDto updateCar(@RequestBody CarDto carDto, @RequestParam long id) {
-        return carMapper.mapToCarDto(carService.updateCar(carDto, id));
+    @PutMapping(value = "update", consumes = APPLICATION_JSON_VALUE)
+    public CarDto updateCar(@RequestBody CarDto carDto) {
+        return carMapper.mapToCarDto(carService.saveCar(carMapper.mapToCar(carDto)));
     }
 
     @DeleteMapping(value = "delete/{id}")

@@ -38,8 +38,9 @@ public class RentController {
     }
 
     @PutMapping(value = "update/{id}", consumes = APPLICATION_JSON_VALUE)
-    public RentDto updateRent(@RequestBody RentDto rentDto, @RequestParam long id) {
-        return rentMapper.mapToRentDto(rentService.updateRent(rentDto, id));
+    public RentDto updateRent(@RequestBody RentDto rentDto) {
+        return rentMapper.mapToRentDto(rentService.saveRent(
+                rentMapper.mapToRent(rentDto)));
     }
 
     @DeleteMapping(value = "delete/{id}")

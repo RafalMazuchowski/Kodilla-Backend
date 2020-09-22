@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 import static com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING;
@@ -16,7 +17,8 @@ import static com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING;
 @Entity(name = "CARS")
 public class Car {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
+    @NotNull
     @Column(name = "CAR_ID", unique = true)
     private Long carId;
 

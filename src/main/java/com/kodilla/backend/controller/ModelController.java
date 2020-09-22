@@ -37,9 +37,9 @@ public class ModelController {
                 modelMapper.mapToModel(modelDto)));
     }
 
-    @PutMapping(value = "update/{id}", consumes = APPLICATION_JSON_VALUE)
-    public ModelDto updateModel(@RequestBody ModelDto modelDto, @RequestParam long id) {
-        return modelMapper.mapToModelDto(modelService.updateModel(modelDto, id));
+    @PutMapping(value = "update", consumes = APPLICATION_JSON_VALUE)
+    public ModelDto updateModel(@RequestBody ModelDto modelDto) {
+        return modelMapper.mapToModelDto(modelService.saveModel(modelMapper.mapToModel(modelDto)));
     }
 
     @DeleteMapping(value = "delete/{id}")

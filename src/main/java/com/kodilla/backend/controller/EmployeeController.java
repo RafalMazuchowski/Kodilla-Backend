@@ -38,8 +38,9 @@ public class EmployeeController {
     }
 
     @PutMapping(value = "update/{id}", consumes = APPLICATION_JSON_VALUE)
-    public EmployeeDto updateEmployee(@RequestBody EmployeeDto employeeDto, @RequestParam long id) {
-        return employeeMapper.mapToEmployeeDto(employeeService.updateEmployee(employeeDto, id));
+    public EmployeeDto updateEmployee(@RequestBody EmployeeDto employeeDto) {
+        return employeeMapper.mapToEmployeeDto(employeeService.saveEmployee(
+                employeeMapper.mapToEmployee(employeeDto)));
     }
 
     @DeleteMapping(value = "delete/{id}")

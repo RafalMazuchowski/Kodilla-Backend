@@ -12,14 +12,16 @@ import java.util.stream.Collectors;
 public class ModelMapper {
 
     public Model mapToModel(ModelDto modelDto) {
-        return new Model(modelDto.getModelId(),
+        return new Model(
+                modelDto.getModelId(),
                 Manufacturer.valueOf(modelDto.getManufacturer()),
                 modelDto.getCarModel(),
                 modelDto.getRate());
     }
 
     public ModelDto mapToModelDto(Model model) {
-        return new ModelDto(model.getModelId(),
+        return new ModelDto(
+                model.getModelId(),
                 model.getManufacturer().toString(),
                 model.getCarModel(),
                 model.getRate());
@@ -27,7 +29,8 @@ public class ModelMapper {
 
     public List<ModelDto> mapToModelDtoList(List<Model> modelList) {
         return modelList.stream()
-                .map(m -> new ModelDto(m.getModelId(),
+                .map(m -> new ModelDto(
+                        m.getModelId(),
                         m.getManufacturer().toString(),
                         m.getCarModel(),
                         m.getRate()))

@@ -2,11 +2,9 @@ package com.kodilla.backend.mapper;
 
 import com.kodilla.backend.domain.Rent;
 import com.kodilla.backend.domain.dto.RentDto;
-import com.kodilla.backend.domain.enums.Degree;
 import com.kodilla.backend.domain.enums.Rental;
 import com.kodilla.backend.domain.repository.BorrowerDao;
 import com.kodilla.backend.domain.repository.CarDao;
-import com.kodilla.backend.domain.repository.ModelDao;
 import com.kodilla.backend.exceptions.BorrowerNotFoundException;
 import com.kodilla.backend.exceptions.CarNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,8 @@ public class RentMapper {
     private CarDao carDao;
 
     public Rent mapToRent(RentDto rentDto) {
-        return new Rent(rentDto.getRentId(),
+        return new Rent(
+                rentDto.getRentId(),
                 borrowerDao.findById(rentDto.getBorrowerId())
                         .orElseThrow(BorrowerNotFoundException::new),
                 carDao.findById(rentDto.getCarId())
@@ -38,7 +37,8 @@ public class RentMapper {
     }
 
     public RentDto mapToRentDto(Rent rent) {
-        return new RentDto(rent.getRentId(),
+        return new RentDto(
+                rent.getRentId(),
                 rent.getBorrower().getBorrowerId(),
                 rent.getCar().getCarId(),
                 rent.getDistance(),
@@ -50,7 +50,8 @@ public class RentMapper {
 
     public List<RentDto> mapToRentDtoList(List<Rent> rentList) {
         return rentList.stream()
-                .map(r -> new RentDto(r.getRentId(),
+                .map(r -> new RentDto(
+                        r.getRentId(),
                         r.getBorrower().getBorrowerId(),
                         r.getCar().getCarId(),
                         r.getDistance(),
