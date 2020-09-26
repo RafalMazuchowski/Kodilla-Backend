@@ -11,6 +11,8 @@ import java.sql.Date;
 @AllArgsConstructor
 public class CarDto {
     private Long carId;
+    private String manufacturer;
+    private String model;
     private Boolean borrowed;
     private Date rentDate;
 }

@@ -13,6 +13,8 @@ public class CarMapper {
 
     public Car mapToCar(CarDto carDto) {
         return new Car(carDto.getCarId(),
+                carDto.getManufacturer(),
+                carDto.getModel(),
                 carDto.getBorrowed(),
                 carDto.getRentDate());
     }
@@ -20,6 +22,8 @@ public class CarMapper {
     public CarDto mapToCarDto(Car car) {
         return new CarDto(
                 car.getCarId(),
+                car.getManufacturer(),
+                car.getModel(),
                 car.getBorrowed(),
                 car.getRentDate());
     }
@@ -28,6 +32,8 @@ public class CarMapper {
         return carList.stream()
                 .map(c -> new CarDto(
                         c.getCarId(),
+                        c.getManufacturer(),
+                        c.getModel(),
                         c.getBorrowed(),
                         c.getRentDate()))
                 .collect(Collectors.toList());
