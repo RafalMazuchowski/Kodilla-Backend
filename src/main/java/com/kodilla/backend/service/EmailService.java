@@ -18,6 +18,7 @@ public class EmailService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
 
+    @Autowired
     private JavaMailSender javaMailSender;
 
     @Autowired
@@ -54,7 +55,7 @@ public class EmailService {
         for (Rent rent : rents) {
             try {
                 String message = "Dear " + rent.getBorrower().getFirstName() + ", please be informed that car: \"" +
-                        rent.getCar().getModelId().getCarModel() + "\" is still rented by you." +
+                        rent.getCar().getModelId().getName() + "\" is still rented by you." +
                         " When you finish travelling, please return the car to our rental so other customers can enjoy it as well!";
 
                 SimpleMailMessage simpleMailMessage = new SimpleMailMessage();

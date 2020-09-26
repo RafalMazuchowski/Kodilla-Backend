@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class ModelDto {
     private Long modelId;
     private String manufacturer;
-    private String carModel;
+    private String name;
     private Double rate;
 }

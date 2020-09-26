@@ -25,8 +25,8 @@ public class Model {
     @Column(name = "MANUFACTURER")
     private Manufacturer manufacturer;
 
-    @Column(name = "MODEL")
-    private String carModel;
+    @Column(name = "NAME")
+    private String name;
 
     @Column(name = "RATE")
     private Double rate;

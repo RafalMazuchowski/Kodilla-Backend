@@ -15,7 +15,7 @@ public class ModelMapper {
         return new Model(
                 modelDto.getModelId(),
                 Manufacturer.valueOf(modelDto.getManufacturer()),
-                modelDto.getCarModel(),
+                modelDto.getName(),
                 modelDto.getRate());
     }
 
@@ -23,7 +23,7 @@ public class ModelMapper {
         return new ModelDto(
                 model.getModelId(),
                 model.getManufacturer().toString(),
-                model.getCarModel(),
+                model.getName(),
                 model.getRate());
     }
 
@@ -32,7 +32,7 @@ public class ModelMapper {
                 .map(m -> new ModelDto(
                         m.getModelId(),
                         m.getManufacturer().toString(),
-                        m.getCarModel(),
+                        m.getName(),
                         m.getRate()))
                 .collect(Collectors.toList());
     }
