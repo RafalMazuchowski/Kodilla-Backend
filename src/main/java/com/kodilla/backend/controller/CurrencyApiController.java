@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/v1/currency")
 @CrossOrigin(origins = "*")
-public class CurrencyController {
+public class CurrencyApiController {
 
     @Autowired
     private CurrencyFacade currencyFacade;

@@ -22,10 +22,6 @@ public class Car {
     @Column(name = "CAR_ID", unique = true)
     private Long carId;
 
-    @ManyToOne
-    @JoinColumn(name = "MODEL_ID")
-    private Model modelId;
-
     @Column(name = "IN_USE")
     private Boolean borrowed;
 
