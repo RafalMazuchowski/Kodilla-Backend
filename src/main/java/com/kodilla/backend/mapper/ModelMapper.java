@@ -1,5 +1,8 @@
 package com.kodilla.backend.mapper;
 
+import com.kodilla.backend.carModels.CarsApiManufacturerDto;
+import com.kodilla.backend.carModels.CarsApiModelDto;
+import com.kodilla.backend.carModels.ManufacturerDto;
 import com.kodilla.backend.domain.Model;
 import com.kodilla.backend.domain.dto.ModelDto;
 import com.kodilla.backend.domain.enums.Manufacturer;
@@ -34,6 +37,22 @@ public class ModelMapper {
                         m.getManufacturer().toString(),
                         m.getName(),
                         m.getRate()))
+                .collect(Collectors.toList());
+    }
+
+    public List<ManufacturerDto> mapToManufacturerDto(List<CarsApiManufacturerDto> manufacturerList) {
+        return manufacturerList.stream()
+                .map(m -> new ManufacturerDto(m.getName()))
+                .collect(Collectors.toList());
+    }
+
+    public List<ModelDto> mapToModelDtoListNew(List<CarsApiModelDto> modelList) {
+        return modelList.stream()
+                .map(m -> new ModelDto(
+                        1L,
+                        m.getMake(),
+                        m.getModel(),
+                        1.0))
                 .collect(Collectors.toList());
     }
 }

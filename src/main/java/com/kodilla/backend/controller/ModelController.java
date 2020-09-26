@@ -1,5 +1,7 @@
 package com.kodilla.backend.controller;
 
+import com.kodilla.backend.carModels.ManufacturerDto;
+import com.kodilla.backend.carModels.fasade.CarModelsFacade;
 import com.kodilla.backend.domain.dto.ModelDto;
 import com.kodilla.backend.mapper.ModelMapper;
 import com.kodilla.backend.service.ModelService;
@@ -20,6 +22,9 @@ public class ModelController {
 
     @Autowired
     ModelMapper modelMapper;
+
+    @Autowired
+    private CarModelsFacade carModelsFacade;
 
     @GetMapping(value = "get/{id}")
     public ModelDto getModel(@PathVariable long id) {
@@ -45,5 +50,15 @@ public class ModelController {
     @DeleteMapping(value = "delete/{id}")
     public void deleteModel(@PathVariable long id) {
         modelService.deleteModel(id);
+    }
+
+    @GetMapping(value = "manufacturers")
+    public List<ManufacturerDto> getApiModels() {
+        return carModelsFacade.fetchManufacturers();
+    }
+
+    @GetMapping(value = "manufacturer/{name}/models")
+    public List<ModelDto> getApiModels(@PathVariable String name) {
+        return carModelsFacade.fetchModels(name);
     }
 }
