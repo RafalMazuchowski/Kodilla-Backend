@@ -1,8 +1,11 @@
-package com.kodilla.backend.carModels;
+package com.kodilla.backend.carModels.client;
 
+import com.kodilla.backend.carModels.CarsApiManufacturerDto;
+import com.kodilla.backend.carModels.CarsApiModelDto;
 import com.kodilla.backend.currencies.client.NbpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -19,7 +22,8 @@ public class CarsApiClient {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NbpClient.class);
 
-    private RestTemplate restTemplate = new RestTemplate();
+    @Autowired
+    private RestTemplate restTemplate;
 
     public List<CarsApiManufacturerDto> getManufacturers() {
         URI uri = UriComponentsBuilder.fromHttpUrl("https://private-anon-9e25c00a6b-carsapi1.apiary-mock.com/manufacturers")

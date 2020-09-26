@@ -4,6 +4,7 @@ package com.kodilla.backend.currencies.client;
 import com.kodilla.backend.currencies.NbpCurrencyDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -20,7 +21,8 @@ public class NbpClient {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NbpClient.class);
 
-    private RestTemplate restTemplate = new RestTemplate();
+    @Autowired
+    private RestTemplate restTemplate;
 
     public List<NbpCurrencyDto> getNbpCurrency() {
         URI uri = UriComponentsBuilder.fromHttpUrl("http://api.nbp.pl/api/exchangerates/tables/A")

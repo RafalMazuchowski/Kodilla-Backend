@@ -1,6 +1,5 @@
 package com.kodilla.backend.controller;
 
-import com.kodilla.backend.domain.Borrower;
 import com.kodilla.backend.domain.dto.BorrowerDto;
 import com.kodilla.backend.mapper.BorrowerMapper;
 import com.kodilla.backend.service.BorrowerService;

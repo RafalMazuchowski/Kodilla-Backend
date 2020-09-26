@@ -1,8 +1,6 @@
 package com.kodilla.backend.carModels;
 
-import com.kodilla.backend.carModels.CarsApiClient;
-import com.kodilla.backend.carModels.CarsApiManufacturerDto;
-import com.kodilla.backend.carModels.CarsApiModelDto;
+import com.kodilla.backend.carModels.client.CarsApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
