@@ -21,7 +21,13 @@ public class RentService {
     }
 
     public Rent getRent(Long id) {
-        return rentDao.findById(id).orElseThrow(RentNotFoundException::new);
+        Rent rent = rentDao.findById(id).orElseThrow(RentNotFoundException::new);
+/*        if (rent.getPrice() == null) {
+            //price_counting
+            rent.setPrice(1000);
+        } else {*/
+            return rent;
+      //  }
     }
 
     public Rent saveRent(Rent rent) {
