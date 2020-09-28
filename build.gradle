@@ -30,6 +30,7 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     compile('org.springframework.boot:spring-boot-starter-mail')
+    implementation 'junit:junit:4.12'
 }
 
 test {
