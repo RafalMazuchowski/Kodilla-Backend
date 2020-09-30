@@ -1,6 +1,6 @@
-package com.kodilla.backend.domain;
+package com.kodilla.backend.service;
 
-import com.kodilla.backend.domain.repository.EmployeeDao;
+import com.kodilla.backend.domain.Employee;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,27 +12,29 @@ import java.util.List;
 
 import static com.kodilla.backend.domain.enums.Degree.TRAINEE;
 import static com.kodilla.backend.domain.enums.Degree.WORKER;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class EmployeeTest {
+public class EmployeeServiceTest {
+
     @Autowired
-    private EmployeeDao employeeDao;
+    private EmployeeService employeeService;
 
     @Transactional
     @Test
-    public void testSaveAndFindAll() {
+    public void testGetAllEmployees() {
         //Given
-        int initialNumberOfEmployees = employeeDao.findAll().size();
+        int initialNumberOfEmployees = employeeService.getAllEmployees().size();
         Employee employee1 = new Employee(1L, "Gruba Ryba", WORKER);
         Employee employee2 = new Employee(14L, "Piotr Strus", TRAINEE);
 
         //When
-        employeeDao.save(employee1);
-        employeeDao.save(employee2);
-        List<Employee> employees = employeeDao.findAll();
+        employeeService.saveEmployee(employee1);
+        employeeService.saveEmployee(employee2);
+        List<Employee> employees = employeeService.getAllEmployees();
         int numberOfEmployees = employees.size();
 
         //Then
@@ -43,40 +45,40 @@ public class EmployeeTest {
         //CleanUp
         employee1.setEmployeeId(employees.get(initialNumberOfEmployees).getEmployeeId());
         employee2.setEmployeeId(employees.get(initialNumberOfEmployees).getEmployeeId());
-        employeeDao.delete(employee1);
-        employeeDao.delete(employee2);
+        employeeService.deleteEmployee(employee1.getEmployeeId());
+        employeeService.deleteEmployee(employee2.getEmployeeId());
     }
 
     @Transactional
     @Test
-    public void testFindById() {
+    public void testGetEmployee() {
         //Given
         Employee employee1 = new Employee(1L, "Gruba Ryba", WORKER);
-        employeeDao.save(employee1);
-        employee1.setEmployeeId(employeeDao.findAll().get(employeeDao.findAll().size()-1).getEmployeeId());
+        employeeService.saveEmployee(employee1);
+        employee1.setEmployeeId(employeeService.getAllEmployees().get(employeeService.getAllEmployees().size() - 1).getEmployeeId());
 
         //When
-        Employee foundEmployee = employeeDao.findById(employee1.getEmployeeId()).get();
+        Employee foundEmployee = employeeService.getEmployee(employee1.getEmployeeId());
 
         //Then
         assertEquals(employee1, foundEmployee);
 
         //CleanUp
-        employeeDao.delete(employee1);
+        employeeService.deleteEmployee(employee1.getEmployeeId());
     }
 
     @Transactional
     @Test
-    public void testDelete() {
+    public void testDeleteEmployee() {
         //Given
-        int initialNumberOfEmployees = employeeDao.findAll().size();
+        int initialNumberOfEmployees = employeeService.getAllEmployees().size();
         Employee employee1 = new Employee(1L, "Gruba Ryba", WORKER);
-        employeeDao.save(employee1);
-        employee1.setEmployeeId(employeeDao.findAll().get(employeeDao.findAll().size()-1).getEmployeeId());
+        employeeService.saveEmployee(employee1);
+        employee1.setEmployeeId(employeeService.getAllEmployees().get(employeeService.getAllEmployees().size() - 1).getEmployeeId());
 
         //When
-        employeeDao.delete(employee1);
-        List<Employee> employees = employeeDao.findAll();
+        employeeService.deleteEmployee(employee1.getEmployeeId());
+        List<Employee> employees = employeeService.getAllEmployees();
         int numberOfEmployees = employees.size();
 
         //Then

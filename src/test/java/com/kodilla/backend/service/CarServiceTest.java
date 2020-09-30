@@ -1,6 +1,6 @@
-package com.kodilla.backend.domain;
+package com.kodilla.backend.service;
 
-import com.kodilla.backend.domain.repository.CarDao;
+import com.kodilla.backend.domain.Car;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,28 +11,28 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CarTest {
+public class CarServiceTest {
 
     @Autowired
-    private CarDao carDao;
+    private CarService carService;
 
     @Transactional
     @Test
     public void testSaveAndFindAll() {
         //Given
-        int initialNumberOfCars = carDao.findAll().size();
+        int initialNumberOfCars = carService.getAllCars().size();
         Car car1 = new Car(1L, "BMW", "M3", true, Date.valueOf("2001-04-20"));
         Car car2 = new Car(2L, "BMW", "M4", true, Date.valueOf("1901-06-15"));
 
         //When
-        carDao.save(car1);
-        carDao.save(car2);
-        List<Car> cars = carDao.findAll();
+        carService.saveCar(car1);
+        carService.saveCar(car2);
+        List<Car> cars = carService.getAllCars();
         int numberOfCars = cars.size();
 
 
@@ -44,8 +44,8 @@ public class CarTest {
         //CleanUp
         car1.setCarId(cars.get(initialNumberOfCars).getCarId());
         car2.setCarId(cars.get(initialNumberOfCars).getCarId());
-        carDao.delete(car1);
-        carDao.delete(car2);
+        carService.deleteCar(car1.getCarId());
+        carService.deleteCar(car2.getCarId());
     }
 
     @Transactional
@@ -53,31 +53,31 @@ public class CarTest {
     public void testFindById() {
         //Given
         Car car1 = new Car(1L, "BMW", "M3", true, Date.valueOf("2001-04-20"));
-        carDao.save(car1);
-        car1.setCarId(carDao.findAll().get(carDao.findAll().size()-1).getCarId());
+        carService.saveCar(car1);
+        car1.setCarId(carService.getAllCars().get(carService.getAllCars().size() - 1).getCarId());
 
         //When
-        Car foundCar = carDao.findById(car1.getCarId()).get();
+        Car foundCar = carService.getCar(car1.getCarId());
 
         //Then
         assertEquals(foundCar, car1);
 
         //CleanUp
-        carDao.delete(car1);
+        carService.deleteCar(car1.getCarId());
     }
 
     @Transactional
     @Test
     public void testDelete() {
         //Given
-        int initialNumberOfCars = carDao.findAll().size();
+        int initialNumberOfCars = carService.getAllCars().size();
         Car car1 = new Car(1L, "BMW", "M3", true, Date.valueOf("2001-04-20"));
-        carDao.save(car1);
-        car1.setCarId(carDao.findAll().get(carDao.findAll().size()-1).getCarId());
+        carService.saveCar(car1);
+        car1.setCarId(carService.getAllCars().get(carService.getAllCars().size() - 1).getCarId());
 
         //When
-        carDao.delete(car1);
-        List<Car> cars = carDao.findAll();
+        carService.deleteCar(car1.getCarId());
+        List<Car> cars = carService.getAllCars();
         int numberOfCars = cars.size();
 
         //Then

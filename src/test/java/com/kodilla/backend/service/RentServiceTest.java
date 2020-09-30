@@ -1,8 +1,8 @@
-package com.kodilla.backend.domain;
+package com.kodilla.backend.service;
 
-import com.kodilla.backend.domain.repository.BorrowerDao;
-import com.kodilla.backend.domain.repository.CarDao;
-import com.kodilla.backend.domain.repository.RentDao;
+import com.kodilla.backend.domain.Borrower;
+import com.kodilla.backend.domain.Car;
+import com.kodilla.backend.domain.Rent;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,21 +15,22 @@ import java.util.List;
 
 import static com.kodilla.backend.domain.enums.Rental.KATOWICE;
 import static com.kodilla.backend.domain.enums.Rental.KRAKOW;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RentTest {
+public class RentServiceTest {
 
     @Autowired
-    private RentDao rentDao;
+    private RentService rentService;
 
     @Transactional
     @Test
     public void testSaveAndFindAll() {
         //Given
-        int initialNumberOfRents = rentDao.findAll().size();
+        int initialNumberOfRents = rentService.getAllRents().size();
         Borrower borrower1 = new Borrower(26L, "Adam", "Ford", Date.valueOf("2001-04-20"));
         Borrower borrower2 = new Borrower(27L, "Adam", "Ford", Date.valueOf("2001-04-20"));
         Car car1 = new Car(55L, "BMW", "M3", true, Date.valueOf("2001-04-20"));
@@ -39,9 +40,9 @@ public class RentTest {
         Rent rent2 = new Rent(93L, borrower2, car2, 55, KRAKOW, KRAKOW, true, 400);
 
         //When
-        rentDao.save(rent1);
-        rentDao.save(rent2);
-        List<Rent> rents = rentDao.findAll();
+        rentService.saveRent(rent1);
+        rentService.saveRent(rent2);
+        List<Rent> rents = rentService.getAllRents();
         int numberOfRents = rents.size();
 
         //Then
@@ -52,8 +53,8 @@ public class RentTest {
         //CleanUp
         rent1.setRentId(rents.get(initialNumberOfRents).getRentId());
         rent2.setRentId(rents.get(initialNumberOfRents).getRentId());
-        rentDao.delete(rent1);
-        rentDao.delete(rent2);
+        rentService.deleteRent(rent1.getRentId());
+        rentService.deleteRent(rent2.getRentId());
     }
 
     @Transactional
@@ -64,34 +65,34 @@ public class RentTest {
         Car car1 = new Car(1L, "BMW", "M3", true, Date.valueOf("2001-04-20"));
 
         Rent rent1 = new Rent(1L, borrower1, car1, 55, KATOWICE, KRAKOW, true, 400);
-        rentDao.save(rent1);
-        rent1.setRentId(rentDao.findAll().get(rentDao.findAll().size()-1).getRentId());
+        rentService.saveRent(rent1);
+        rent1.setRentId(rentService.getAllRents().get(rentService.getAllRents().size() - 1).getRentId());
 
         //When
-        Rent foundRent = rentDao.findById(rent1.getRentId()).get();
+        Rent foundRent = rentService.getRent(rent1.getRentId());
 
         //Then
         assertEquals(foundRent, rent1);
 
         //CleanUp
-        rentDao.delete(rent1);
+        rentService.deleteRent(rent1.getRentId());
     }
 
     @Transactional
     @Test
     public void testDelete() {
         //Given
-        int initialNumberOfRents = rentDao.findAll().size();
+        int initialNumberOfRents = rentService.getAllRents().size();
         Borrower borrower1 = new Borrower(16L, "Adam", "Ford", Date.valueOf("2001-04-20"));
         Car car1 = new Car(1L, "BMW", "M3", true, Date.valueOf("2001-04-20"));
 
         Rent rent1 = new Rent(1L, borrower1, car1, 55, KATOWICE, KRAKOW, true, 400);
-        rentDao.save(rent1);
-        rent1.setRentId(rentDao.findAll().get(rentDao.findAll().size()-1).getRentId());
+        rentService.saveRent(rent1);
+        rent1.setRentId(rentService.getAllRents().get(rentService.getAllRents().size() - 1).getRentId());
 
         //When
-        rentDao.delete(rent1);
-        List<Rent> rents = rentDao.findAll();
+        rentService.deleteRent(rent1.getRentId());
+        List<Rent> rents = rentService.getAllRents();
         int numberOfRents = rents.size();
 
         //Then
