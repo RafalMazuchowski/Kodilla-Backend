@@ -3,7 +3,11 @@ package com.kodilla.backend.mapper;
 import com.kodilla.backend.domain.Borrower;
 import com.kodilla.backend.domain.Car;
 import com.kodilla.backend.domain.Rent;
+import com.kodilla.backend.domain.dto.BorrowerDto;
+import com.kodilla.backend.domain.dto.CarDto;
 import com.kodilla.backend.domain.dto.RentDto;
+import com.kodilla.backend.domain.repository.BorrowerDao;
+import com.kodilla.backend.domain.repository.CarDao;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +22,8 @@ import java.util.Optional;
 import static com.kodilla.backend.domain.enums.Rental.KATOWICE;
 import static com.kodilla.backend.domain.enums.Rental.KRAKOW;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -26,6 +32,12 @@ public class RentMapperTest {
     @Autowired
     RentMapper rentMapper;
 
+    @Autowired
+    BorrowerDao borrowerDao;
+
+    @Autowired
+    CarDao carDao;
+
     @Test
     void mapToRent() { // MOCKITO
         //Given
@@ -33,6 +45,22 @@ public class RentMapperTest {
 
         Borrower borrower = new Borrower(3L, "Adam", "Ford", Date.valueOf("2001-04-20"));
         Car car = new Car(5L, "BMW", "M3", true, Date.valueOf("2001-04-20"));
+
+//        BorrowerDao borrowerDaoMock = mock(BorrowerDao.class);
+//        when(borrowerDaoMock.findById(3L)).thenReturn(Optional.of(borrower));
+//
+//        BorrowerDto borrowerDtoMock = mock(BorrowerDto.class);
+//        when(borrowerDtoMock.getBorrowerId()).thenReturn(3L);
+//
+//        CarDao carDaoMock = mock(CarDao.class);
+//        when(carDaoMock.findById(5L)).thenReturn(Optional.of(car));
+//
+//        CarDto carDtoMock = mock(CarDto.class);
+//        when(carDtoMock.getCarId()).thenReturn(5L);
+
+        RentMapper rentMapperMock = mock(RentMapper.class);
+        when(rentMapperMock.mapToRent(rentDto).getCar()).thenReturn(car);
+        when(rentMapperMock.mapToRent(rentDto).getBorrower()).thenReturn(borrower);
 
         //When
         Rent mappingResult = rentMapper.mapToRent(rentDto);

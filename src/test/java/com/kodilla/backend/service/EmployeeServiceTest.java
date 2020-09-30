@@ -44,7 +44,7 @@ public class EmployeeServiceTest {
 
         //CleanUp
         employee1.setEmployeeId(employees.get(initialNumberOfEmployees).getEmployeeId());
-        employee2.setEmployeeId(employees.get(initialNumberOfEmployees).getEmployeeId());
+        employee2.setEmployeeId(employees.get(initialNumberOfEmployees + 1).getEmployeeId());
         employeeService.deleteEmployee(employee1.getEmployeeId());
         employeeService.deleteEmployee(employee2.getEmployeeId());
     }

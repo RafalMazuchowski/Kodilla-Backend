@@ -52,7 +52,7 @@ public class RentServiceTest {
 
         //CleanUp
         rent1.setRentId(rents.get(initialNumberOfRents).getRentId());
-        rent2.setRentId(rents.get(initialNumberOfRents).getRentId());
+        rent2.setRentId(rents.get(initialNumberOfRents + 1).getRentId());
         rentService.deleteRent(rent1.getRentId());
         rentService.deleteRent(rent2.getRentId());
     }

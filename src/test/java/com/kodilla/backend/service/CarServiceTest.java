@@ -35,7 +35,6 @@ public class CarServiceTest {
         List<Car> cars = carService.getAllCars();
         int numberOfCars = cars.size();
 
-
         //Then
         assertEquals(initialNumberOfCars + 2, numberOfCars);
         assertEquals(car1.getModel(), "M3");
@@ -43,7 +42,7 @@ public class CarServiceTest {
 
         //CleanUp
         car1.setCarId(cars.get(initialNumberOfCars).getCarId());
-        car2.setCarId(cars.get(initialNumberOfCars).getCarId());
+        car2.setCarId(cars.get(initialNumberOfCars + 1).getCarId());
         carService.deleteCar(car1.getCarId());
         carService.deleteCar(car2.getCarId());
     }
